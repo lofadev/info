@@ -23,14 +23,23 @@ html {
 }
 
 body {
-  height: 100vh;
+  max-height: 100vh;
+  height: 100%;
   background-color: var(--primary-color);
-  /* overflow: hidden; */
+  overflow: hidden;
   color: #fff;
 }
 
 ::selection {
   background-color: var(--primary-color);
+}
+
+img {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .main {
@@ -47,7 +56,31 @@ body {
   top: 20%;
   left: 5%;
   width: 200px;
-  animation: flying 6s linear infinite alternate;
+  animation: flying 6s linear infinite alternate,
+    shaking 10s cubic-bezier(0.165, 0.84, 0.44, 1) infinite alternate;
+}
+
+@keyframes shaking {
+  from {
+    transform: rotate(-30deg);
+  }
+  to {
+    transform: rotate(30deg), translateY(300px);
+  }
+}
+
+.flying2 {
+  position: absolute;
+  right: 8%;
+  top: 15%;
+  width: 100px;
+  animation: spinner 5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.flying2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @keyframes flying {
@@ -135,9 +168,6 @@ body {
   width: 100%;
   transition: all 0.2s linear;
 }
-.inner__logo img:hover {
-  transform: scale(1.05);
-}
 
 @media screen and (min-width: 768px) {
   .menu {
@@ -174,21 +204,6 @@ body {
 
 @media screen and (min-width: 768px) {
   .menu__items.active a {
-    background-image: linear-gradient(to right, #9183f7, #6fe9fd);
-    font-weight: 700;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
-@media (hover: hover) {
-  .menu__items a:hover::before {
-    left: 0;
-    width: 100%;
-  }
-
-  .menu__items a:hover {
     background-image: linear-gradient(to right, #9183f7, #6fe9fd);
     font-weight: 700;
     background-clip: text;
@@ -523,5 +538,20 @@ section {
     50% {
       border-right: 5px solid #fff;
     }
+  }
+}
+
+@media (hover: hover) {
+  .menu__items a:hover::before {
+    left: 0;
+    width: 100%;
+  }
+
+  .menu__items a:hover {
+    background-image: linear-gradient(to right, #9183f7, #6fe9fd);
+    font-weight: 700;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
