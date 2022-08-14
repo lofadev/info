@@ -26,7 +26,6 @@ body {
   max-height: 100vh;
   height: 100%;
   background-color: var(--primary-color);
-  overflow: hidden;
   color: #fff;
 }
 
@@ -45,9 +44,10 @@ img {
 .main {
   position: relative;
 }
+
 .background img {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
 }
 
@@ -138,6 +138,7 @@ img {
   align-items: center;
   cursor: pointer;
   position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .logo::before {
@@ -212,11 +213,12 @@ img {
   }
 }
 
-/* menu--mobile */
-.menu--mobile {
+/* menu bar on mobile */
+.menu__bar {
   font-size: 32px;
   cursor: pointer;
   display: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn--close {
@@ -475,7 +477,7 @@ section {
   .menu__items.active a {
     color: #6fe9fd;
   }
-  .menu--mobile {
+  .menu__bar {
     display: block;
     position: relative;
     margin-right: 20px;
