@@ -3,13 +3,13 @@ window.onload = function () {
   const wrapper = document.querySelector('.wrapper');
   let contentWidth = wrapper.clientWidth || wrapper.offsetWidth;
   const logo = document.querySelector('#header .logo');
-  const btnClose = document.querySelector('.btn--close');
   const menu = document.querySelector('.menu');
   const menuBar = document.querySelector('.menu__bar');
   const modal = document.querySelector('.modal');
 
   let currentIndex = 0;
   let translateValue;
+  let isCheck = false;
   logo.onclick = () => {
     wrapper.style = `transform: translateX(0px)`;
     document.querySelector('.menu__items.active').classList.remove('active');
@@ -31,21 +31,28 @@ window.onload = function () {
       wrapper.style = `transform: translateX(-${translateValue}px)`;
       modal.style = 'display: none';
       menu.style = 'transform: scale(0)';
+      isCheck = !isCheck;
+      menuBar.classList.remove('active');
     });
   });
 
-  btnClose.onclick = () => {
-    menu.style = 'transform: scale(0)';
-    modal.style = 'display: none';
-  };
-
   menuBar.onclick = () => {
-    menu.style = 'transform: scale(1)';
-    modal.style = 'display: block';
+    isCheck = !isCheck;
+    if (isCheck) {
+      menu.style = 'transform: scale(1)';
+      modal.style = 'display: block';
+      menuBar.classList.add('active');
+    } else {
+      menu.style = 'transform: scale(0)';
+      modal.style = 'display: none';
+      menuBar.classList.remove('active');
+    }
   };
 
   modal.onclick = () => {
+    isCheck = !isCheck;
     menu.style = 'transform: scale(0)';
     modal.style = 'display: none';
+    menuBar.classList.remove('active');
   };
 };

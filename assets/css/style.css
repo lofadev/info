@@ -27,6 +27,7 @@ body {
   height: 100%;
   background-color: var(--primary-color);
   color: #fff;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
@@ -41,6 +42,9 @@ img {
   -ms-user-select: none;
 }
 
+.underline {
+  text-decoration: underline;
+}
 .main {
   position: relative;
 }
@@ -74,7 +78,7 @@ img {
   right: 8%;
   top: 15%;
   width: 100px;
-  animation: spinner 5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+  animation: spinner 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
 }
 
 .flying2 img {
@@ -214,29 +218,62 @@ img {
 }
 
 /* menu bar on mobile */
-.menu__bar {
-  font-size: 32px;
-  cursor: pointer;
-  display: none;
-  -webkit-tap-highlight-color: transparent;
-}
 
-.btn--close {
+.menu__bar {
   width: 32px;
   height: 32px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+  margin-right: 10px;
+  z-index: 8;
   display: none;
+  cursor: pointer;
 }
-.btn--close i {
-  color: var(--primary-color);
-  font-size: 28px;
-  display: block;
+
+.menu__bar span {
+  display: inline-block;
+  height: 5px;
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 100rem;
+  transition: all 0.3s linear;
+}
+
+.menu__bar span:first-child {
+  top: 0;
+  left: 0;
+}
+
+.menu__bar span:last-child {
+  bottom: 0;
+  right: 0;
+}
+
+.menu__bar.active span:first-child {
+  width: 65%;
+  left: 3px;
+  transform-origin: left top;
+  transform: rotateZ(45deg);
+}
+
+.menu__bar.active span:last-child {
+  bottom: 0;
+  width: 65%;
+  right: 4px;
+  transform-origin: bottom right;
+  transform: rotateZ(45deg);
+}
+
+.menu__bar.active span:nth-child(2) {
+  transform: rotateZ(-45deg);
+  width: 130%;
+}
+
+.menu__bar.active span {
+  background-color: var(--primary-color);
 }
 
 @keyframes fade {
@@ -447,10 +484,10 @@ section {
     height: fit-content;
     width: 50vw;
     border-radius: 4px;
-    top: 80px;
-    right: 40px;
+    top: 10px;
+    right: 20px;
     background-color: #fff;
-    z-index: 10;
+    z-index: 7;
     transform-origin: top right;
     transform: scale(0);
     transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -477,14 +514,9 @@ section {
   .menu__items.active a {
     color: #6fe9fd;
   }
-  .menu__bar {
-    display: block;
-    position: relative;
-    margin-right: 20px;
-  }
 
-  .btn--close {
-    display: block;
+  .menu__bar {
+    display: flex;
   }
 
   #header {
